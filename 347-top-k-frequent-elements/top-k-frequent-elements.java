@@ -21,6 +21,7 @@ class Solution {
             freqMap.get(freq).add(num);
         }
 
+        //getting all the elements based on their freq from the freq map
         List<Integer> result = new ArrayList<>();
         for (int freq = nums.length; freq > 0; freq--) {
             if (freqMap.containsKey(freq)) {
@@ -28,7 +29,9 @@ class Solution {
             }
         }
         
-        int[] resultArray = new int[Math.min(k, result.size())];
+        //getting top k elements from the list in an array
+        int[] resultArray = new int[Math.min(k, result.size())];  //check if k is bigger than
+                                                                  //result set
         for (int i = 0; i < resultArray.length; i++) {
             resultArray[i] = result.get(i);
         }
