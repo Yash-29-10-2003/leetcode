@@ -1,4 +1,6 @@
 class Solution {
+    //making 3 functions for 
+    //1. checking for duplicates
     public boolean containsDuplicate(int[] nums) {
         HashSet<Integer> hashSet = new HashSet<>();
         for (int num : nums) {
@@ -12,6 +14,8 @@ class Solution {
         }
         return false;
     }
+
+    //2. converting input from char to int and removing '.' from the matrix
     public int[] fixInput(char[] charNums){
         for (int i = 0; i < charNums.length; i++) {
             if (charNums[i] == '.') {
@@ -24,6 +28,8 @@ class Solution {
         }
         return intArray;
     }
+
+    //3. getting valid subgrids to check smaller matrices
     public int[] getSubgrid(char[][] board, int row, int col) {
         char[] subgridString = new char[9];
         int index = 0;
@@ -34,8 +40,10 @@ class Solution {
         }
         return fixInput(subgridString);
     }
+
+    //main function
     public boolean isValidSudoku(char[][] board) {
-        //Checking rows
+        // Checking rows
         for (char[] row : board) {
             int[] cleanedNums = fixInput(row);
             if (containsDuplicate(cleanedNums)) {
@@ -53,6 +61,7 @@ class Solution {
                 return false;
             }
         }
+        // Checking subgrids
         for (int i = 0; i < 9; i += 3) {
             for (int j = 0; j < 9; j += 3) {
                 if (containsDuplicate(getSubgrid(board, i, j))) {
