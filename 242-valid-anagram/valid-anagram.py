@@ -1,4 +1,4 @@
-# a 65
+# a 97 for lowercase
 
 # method - map with ascii
 # mehtod - add individual into sets then set difference 
