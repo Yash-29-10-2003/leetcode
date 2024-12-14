@@ -1,14 +1,12 @@
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
         myDict = {}
-        curr = None
-        length = len(nums)
-        for i in range(len(nums)):
-            curr = target - nums[i]
+        for i,v in enumerate(nums):
+            curr = target-v
             if curr in myDict:
-                return[i , myDict[curr]]
-            else:
-                myDict[nums[i]] = i
-        return ans
+                return[i,myDict[curr]]
+            
+            myDict[v] = i
+        
 
             
