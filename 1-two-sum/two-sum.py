@@ -3,12 +3,10 @@ class Solution:
         myDict = {}
         curr = None
         length = len(nums)
-        ans = [0] * 2
         for i in range(len(nums)):
             curr = target - nums[i]
             if curr in myDict:
-                ans[0] = i
-                ans[1] = myDict[curr]
+                return[i , myDict[curr]]
             else:
                 myDict[nums[i]] = i
         return ans
