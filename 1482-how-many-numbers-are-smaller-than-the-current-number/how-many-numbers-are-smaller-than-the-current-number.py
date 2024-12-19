@@ -5,8 +5,10 @@ class Solution:
         res = []
         mapA = {}
         for n in range(0, len(numSorted)):
-            mapA[n] = numSorted[n]
+            if numSorted[n] not in mapA:   
+                # we only update for the first occuracnce of an element to mitigate errors due to duplicate numbers
+                mapA[numSorted[n]] = n
         for m in nums:
-            key = next((k for k, v in mapA.items() if v == m), None)
-            res.append(key)
+            res.append(mapA[m])
         return res
+
