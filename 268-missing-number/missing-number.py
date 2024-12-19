@@ -1,10 +1,10 @@
 class Solution:
     def missingNumber(self, nums: List[int]) -> int:
-        #setA = set(nums)
+        setA = set(nums)
         minNum = 0
-        maxNum = len(nums)
+        maxNum = len(setA)
         for i in range(minNum , maxNum+2):
-            if i in nums:
+            if i in setA:
                 continue
             else:
                 return i
