@@ -1,35 +1,9 @@
 class Solution:
     def minTimeToVisitAllPoints(self, points: List[List[int]]) -> int:
-        cursor=points[0]
         time = 0
-        for point in points:
-            while cursor != point:
-                if point[0] > cursor[0] and point[1] > cursor[1]:
-                    cursor[0] += 1
-                    cursor[1] += 1
-                    time += 1
-                if point[0] > cursor[0] and point[1] == cursor[1]:
-                    cursor[0] += 1
-                    time += 1
-                if point[0] > cursor[0] and point[1] < cursor[1]:
-                    cursor[0] += 1
-                    cursor[1] -= 1
-                    time += 1
-                if point[0] == cursor[0] and point[1] < cursor[1]:
-                    cursor[1] -= 1
-                    time += 1
-                if point[0] == cursor[0] and point[1] > cursor[1]:
-                    cursor[1] += 1
-                    time += 1
-                if point[0] < cursor[0] and point[1] < cursor[1]:
-                    cursor[0] -= 1
-                    cursor[1] -= 1
-                    time += 1
-                if point[0] < cursor[0] and point[1] == cursor[1]:
-                    cursor[0] -= 1
-                    time += 1
-                if point[0] < cursor[0] and point[1] > cursor[1]:
-                    cursor[0] -= 1
-                    cursor[1] += 1
-                    time += 1
+        x1 , y1 = points.pop()     #we start from the last element because its the same thing both ways
+        while points != []:        #couldve done while points:
+            x2,y2 = points.pop()
+            time += max(abs(x1-x2) , abs(y1-y2))
+            x1,y1 = x2,y2
         return time
