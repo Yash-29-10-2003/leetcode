@@ -4,7 +4,7 @@ class Solution:
         window = set()
 
         for R in range(len(nums)):        
-            if R - L > k:
+            if R - L > k:                  #if the diff bw the 2 pointers is bigger than out limit we just remove the element from the shorter index (left index) and increment the left index by one to slide our window to its currect maxm length.
                 window.remove(nums[L])
                 L += 1
 
