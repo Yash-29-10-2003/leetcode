@@ -7,7 +7,3 @@ class Solution:
                 return mapA[temp] , i
             else:
                 mapA[nums[i]] = i
-            
-
-
-        
