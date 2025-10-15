@@ -1,17 +1,28 @@
 class Solution {
     public boolean isAnagram(String s, String t) {
-        int[] scount = new int[26];
-        int[] tcount = new int[26];
-        char[] sArray = s.toCharArray();
-        char[] tArray = t.toCharArray();
-
-        for(char c : sArray){
-            scount[c - 'a'] += 1;
+        HashMap<String , Integer> mapA = new HashMap<>();
+        HashMap<String , Integer> mapB = new HashMap<>();
+        String[] sArray = s.split("");
+        String[] tArray = t.split("");
+        for(int i = 0; i < sArray.length ; i++){
+            if (mapA.containsKey(sArray[i])){
+                mapA.put(sArray[i], mapA.get(sArray[i]) + 1);
+            }
+            else {
+                mapA.put(sArray[i] , 1);
+            }
         }
-        for(char d : tArray){
-            tcount[d - 'a'] += 1;
+        for(int i = 0; i < tArray.length ; i++){
+            if (mapB.containsKey(tArray[i])){
+                mapB.put(tArray[i] , mapB.get(tArray[i]) + 1);
+            }
+            else {
+                mapB.put(tArray[i] , 1);
+            }
         }
-
-        return Arrays.equals(scount, tcount);
+        if(mapA.equals(mapB)){
+            return true;
+        }
+        return false;
     }
 }
