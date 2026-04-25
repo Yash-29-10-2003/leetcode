@@ -1,41 +1,23 @@
 class Solution {
     public int[] topKFrequent(int[] nums, int k) {
-        HashMap<Integer,Integer> hashMap = new HashMap<>();
-        for (int num : nums) {
-            hashMap.put(num, hashMap.getOrDefault(num, 0) + 1);
-            //this get or default function either gets the value from the map and
-            // if the key doesnt exist yet it gives a default val of 0 .
-        }
-
-        HashMap<Integer, List<Integer>> freqMap = new HashMap<>();
-
-        // for each num in the key set of the old mapwe check its 
-        // frequency and add it as a key in 
-        // the freq map , then we add the num in the value list
-        for (int num : hashMap.keySet()) {
-            int freq = hashMap.get(num);
-            //we add freq in freqmap if not already present
-            if (!freqMap.containsKey(freq)) {
-                freqMap.put(freq, new ArrayList<>());
+        HashMap<Integer, Integer> map = new HashMap<>();
+        for(int num : nums){
+            if (map.containsKey(num)){
+                map.put(num,map.get(num) + 1);
             }
-            freqMap.get(freq).add(num);
-        }
-
-        //getting all the elements based on their freq from the freq map
-        List<Integer> result = new ArrayList<>();
-        for (int freq = nums.length; freq > 0; freq--) {
-            if (freqMap.containsKey(freq)) {
-                result.addAll(freqMap.get(freq));
+            else{
+                map.put(num,1);
             }
         }
-        
-        //getting top k elements from the list in an array
-        int[] resultArray = new int[Math.min(k, result.size())];  //check if k is bigger than
-                                                                  //result set
-        for (int i = 0; i < resultArray.length; i++) {
-            resultArray[i] = result.get(i);
+        //putting map entries into list
+        List<Map.Entry<Integer, Integer>> list = new ArrayList<>(map.entrySet());
+        //sorting list based on values in desc order
+        list.sort((a, b) -> b.getValue() - a.getValue());
+        //taking first k keys
+        int[] result = new int[k];
+        for (int i = 0; i < k; i++) {
+            result[i] = list.get(i).getKey();
         }
-
-        return resultArray;
+        return result;
     }
 }
